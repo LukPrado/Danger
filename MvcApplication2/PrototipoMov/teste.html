@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>teste</title>
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    function drop(ev) {
+        if (ev.target.getAttribute("data-value") <= 2) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("Text");
+            ev.target.appendChild(document.getElementById(data));
+            terminaMovimento(ev.target);
+        } else {
+            ev.preventDefault();
+            alert("não pode ir ali..");
+            return false;
+        }
+    }
+
+    function carregar() {
+
+        var list = document.getElementsByTagName("div");
+        var i = 0;
+        while (i < list.length) {
+            if (list[i].getAttribute("data-value") > 2) {
+                list[i].setAttribute("class", "unlock");
+            }
+            i = i + 1;
+        }
+            
+    }
+
+    function terminaMovimento(destino){
+        var isConfirmed = confirm("Confirma fim do movimento?");
+        if (isConfirmed == true) {
+
+            var list = document.querySelectorAll('*[data-tipo="square"]');
+            var i = 0;
+            while (i < list.length) {
+                list[i].setAttribute("class", "dg");
+                list[i].removeAttribute("ondrop");
+                i = i + 1;
+            }
+
+            alert("Ação de movimento concluída!");
+        }
+    }
+
+</script>
+
+    <style>
+        div.dg {
+            border: 1px dotted #e4e4e4; 
+            width: 95px; 
+            height: 95px;
+            float: left; 
+            display: inline-block;
+            position: relative;
+            margin-left: 1px;
+            margin-top: 1px;
+            z-index: 5;
+        }
+
+        div.sp {
+            border: 1px solid #e4e4e4; 
+            width: 95px; 
+            height: 95px;
+            float: left; 
+            display: inline-block;
+            position: relative;
+            margin-left: 1px;
+            margin-top: 1px;
+            z-index: 5;
+        }
+
+        div.tile {
+            border: 1px dashed #999; 
+            width: 300px;
+            height: 300px;
+            float: left;
+            display: block;
+            margin-left: 1px;
+            margin-top: 1px;
+        }
+
+        div.unlock {
+            background-color: #c4c4c4;
+            border: 1px solid #999; 
+            width: 95px; 
+            height: 95px;
+            float: left; 
+            display: inline-block;
+            position: relative;
+            margin-left: 1px;
+            margin-top: 1px;
+            z-index: 5;
+        }
+    </style>
+
+</head>
+<body onload="carregar();">
+
+    <div style="width: 1000px; border: 0px solid red; margin-left: 1px; margin-top: 1px; position: absolute; z-index: -10">
+
+        <div id="tile1" class="tile" data-tipo="tile">
+            <div id="div25" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)">
+                <img id="drag1" src="chewie.png" draggable="true" ondragstart="drag(event)" width="94" />
+            </div>
+            <div id="div26" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div27" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div28" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div29" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div30" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div31" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div32" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div33" ondrop="drop(event)" data-value="1" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <div id="tile2" class="tile" data-tipo="tile">
+            <div id="div35" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div36" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div37" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div38" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div39" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div40" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div41" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div42" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div43" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <div id="tile3" class="tile" data-tipo="tile">
+            <div id="div34" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div44" class="sp"></div>
+            <div id="div45" class="sp"></div>
+            <div id="div46" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div47" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div48" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div49" ondrop="drop(event)" data-value="5" data-tipo="square" class="dg" ondragover="allowDrop(event)"></div>
+            <div id="div50" class="sp"></div>
+            <div id="div51" class="sp"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
